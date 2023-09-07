@@ -1,0 +1,28 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "androidx.navigation.safeargs"
+    id 'com.google.devtools.ksp'
+}
+
+apply from: '../shared.gradle'
+
+android {
+    namespace 'com.pokemon.data'
+    defaultConfig {
+        consumerProguardFiles "consumer-rules.pro"
+    }
+}
+
+dependencies {
+
+    api(project(':base'))
+    api(libs.bundles.retrofit)
+    api(libs.bundles.room)
+    ksp(libs.room.compiler)
+
+    testImplementation(libs.junit.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.annotation.annotation)
+}
