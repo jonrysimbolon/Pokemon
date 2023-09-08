@@ -23,9 +23,7 @@
   <img src="/img/detail.png" width="250" align="right"  alt="Detail Screen">
 </p>
 
-<p align="center">
-    <img src="/img/tour.gif" align="left" width="250"/>
-</p>
+<img src="/img/tour.gif" align="left" width="250"/>
 
 # Want to donate ?
 
