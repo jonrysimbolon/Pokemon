@@ -18,11 +18,13 @@
 
 # Preview
 <p align="center">
-  <img src="/img/splash.png" width="150" alt="Splash Screen">
-  <img src="/img/home.png" width="150" alt="Home Screen">
+  <img src="/img/splash.png" width="150" alt="Splash Screen"><br>
+  <img src="/img/home.png" width="150" alt="Home Screen"><br>
   <img src="/img/detail.png" width="150" alt="Detail Screen">
 </p>
 
 
 # Video
-<img src="/img/tour.gif" align="right" width="150"/>
+<p align="center">
+    <img src="/img/tour.gif" align="right" width="150"/>
+</p>
