@@ -1,5 +1,8 @@
 package id.pokemon.home
 
+import android.app.Activity
+import android.app.SearchManager
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,6 +12,7 @@ import com.pokemon.data.model.PokemonModel
 import com.pokemon.data.repository.pokemon.PokemonRepository
 import com.pokemon.data.utils.OrderBy
 import com.pokemon.data.utils.ResultStatus
+import id.pokemon.R
 import id.pokemon.utils.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -61,6 +65,24 @@ class HomeViewModel(
                 .collect { pokemon ->
                     _detailPokemon.value = Event(pokemon)
                 }
+        }
+    }
+
+    fun searchConfig(requireActivity: Activity,searchManager: SearchManager, searchView: SearchView) {
+        searchView.apply {
+            setSearchableInfo(searchManager.getSearchableInfo(requireActivity.componentName))
+            queryHint = resources.getString(R.string.search_hint)
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    searchView.clearFocus()
+                    getPokemon(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    return false
+                }
+            })
         }
     }
 }

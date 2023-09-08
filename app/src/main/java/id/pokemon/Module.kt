@@ -63,7 +63,6 @@ val repositoryModule = module {
             get()
         )
     }
-
 }
 
 val adapterModule = module {

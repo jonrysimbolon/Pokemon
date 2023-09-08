@@ -1,16 +1,12 @@
 package com.jonrysimbolon.base.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.jonrysimbolon.base.R
-import com.jonrysimbolon.base.dialog.Failure
-import com.jonrysimbolon.base.dialog.Loading
 import com.jonrysimbolon.base.dialog.ui.FailureImpl
 import com.jonrysimbolon.base.dialog.ui.LoadingImpl
 import com.jonrysimbolon.base.viewmodel.BaseViewModel
@@ -26,14 +22,14 @@ abstract class BaseFragment<T : ViewBinding, VM : BaseViewModel>(
 
     protected abstract val baseViewModel: VM
 
-    private var loadingDialog: Loading? = null
+    private var loadingDialog: LoadingImpl? = null
 
-    private var failureDialog: Failure? = null
+    private var failureDialog: FailureImpl? = null
 
     private fun baseError(
         error: String,
         dismiss: Boolean,
-        action: (Failure) -> Unit
+        action: (FailureImpl) -> Unit
     ){
         loadingDialog?.show(false)
         failureDialog?.apply {
@@ -85,8 +81,10 @@ abstract class BaseFragment<T : ViewBinding, VM : BaseViewModel>(
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        loadingDialog = null
+        failureDialog = null
         _binding = null
+        super.onDestroyView()
     }
 
     protected open fun setUpUi(savedInstanceState: Bundle?) = Unit
@@ -95,13 +93,17 @@ abstract class BaseFragment<T : ViewBinding, VM : BaseViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingImpl(
-            Dialog(requireContext()),
-            ConstraintLayout(requireContext())
-        )
+            requireContext()
+        ).also {
+            it.init()
+        }
+
         failureDialog = FailureImpl(
-            Dialog(requireContext()),
-            ConstraintLayout(requireContext())
-        )
+            requireContext()
+        ).also {
+            it.init()
+        }
+
         setUpUi(savedInstanceState)
         setUpVm()
     }

@@ -1,17 +1,12 @@
 package com.jonrysimbolon.base.dialog
 
-import android.app.Dialog
+import android.content.Context
 import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class Failure(
-    dialog: Dialog,
-    constraintLayout: ConstraintLayout?,
-    layout: Int
+    context: Context,
 ) : Loading(
-    dialog,
-    constraintLayout,
-    layout
+    context
 ) {
 
     abstract var reloadButton: Button?

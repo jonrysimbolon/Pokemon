@@ -8,10 +8,16 @@
 1. Clean Architecture (SOC & SOLID)
 2. MVVM
 3. LiveData & Flow
-4. Retrofit [LINK]
-5. Room [LINK]
-6. Coil [LINK]
-7. Navigation (Jetpack Component) [LINK]
-8. Koin (DI) [LINK]
+4. Retrofit
+5. Room
+6. Coil
+7. Navigation (Jetpack Component)
+8. Koin (DI)
 
 => Semuanya bisa dilihat di libs.versions.toml
+
+# Preview
+<img src="/img/splash.png" align="right" width="320"/>
+<img src="/img/home.png" align="right" width="320"/>
+<img src="/img/detail.png" align="right" width="320"/>
+<img src="/img/tour.gif" align="right" width="320"/>

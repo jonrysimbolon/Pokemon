@@ -42,10 +42,15 @@ class HomeFragment :
 
             toolbar.apply {
 
-                val searchManager =
-                    requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
-                val searchView: SearchView = menu.findItem(R.id.search).actionView as SearchView
-                searchConfig(searchManager, searchView)
+                setOnClickListener {
+                    baseViewModel.getAllPokemon(OrderBy.ASC)
+                }
+
+                baseViewModel.searchConfig(
+                    requireActivity(),
+                    requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager,
+                    menu.findItem(R.id.search).actionView as SearchView
+                )
 
                 setOnMenuItemClickListener {
                     when (it.itemId) {
@@ -65,24 +70,6 @@ class HomeFragment :
                     }
                 }
             }
-        }
-    }
-
-    private fun searchConfig(searchManager: SearchManager, searchView: SearchView) {
-        searchView.apply {
-            setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
-            queryHint = resources.getString(R.string.search_hint)
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    searchView.clearFocus()
-                    baseViewModel.getPokemon(query)
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    return false
-                }
-            })
         }
     }
 
