@@ -23,8 +23,6 @@
   <img src="/img/detail.png" width="250" align="right"  alt="Detail Screen">
 </p>
 
-
-# Video
 <p align="center">
     <img src="/img/tour.gif" align="left" width="250"/>
 </p>
