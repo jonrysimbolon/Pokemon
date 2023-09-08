@@ -23,9 +23,11 @@
   <img src="/img/detail.png" width="250" align="right"  alt="Detail Screen">
 </p>
 
-<img src="/img/tour.gif" align="left" width="250"/>
+<p align="center">
+    <img src="/img/tour.gif" align="left" width="250"/>
+</p>
 
-# Want to donate ?
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jonrysimboZ)
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q4NMYTP)
+<p align="center">
+    [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jonrysimboZ)
+    [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q4NMYTP)
+</p>
