@@ -16,6 +16,7 @@ android {
 dependencies {
 
     api(libs.coil.kt)
+    api(libs.timber.timber)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat.appcompat)

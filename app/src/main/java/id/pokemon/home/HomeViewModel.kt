@@ -25,8 +25,6 @@ class HomeViewModel(
     private val pokemonRepository: PokemonRepository
 ) : BaseViewModel() {
 
-    val defaultOption = OrderBy.ASC
-
     private val _pokemons = MutableStateFlow<ResultStatus<List<PokemonModel>>>(ResultStatus.Loading)
     val pokemons: StateFlow<ResultStatus<List<PokemonModel>>>
         get() = _pokemons
@@ -36,11 +34,11 @@ class HomeViewModel(
         get() = _detailPokemon
 
 
-    init {
-        getAllPokemon(defaultOption)
-    }
+    /*init {
+        getAllPokemon()
+    }*/
 
-    fun getAllPokemon(orderBy: OrderBy) {
+    fun getAllPokemon(orderBy: OrderBy = OrderBy.ASC) {
         viewModelScope.launch {
             pokemonRepository.getAllPokemon(orderBy)
                 .flowOn(Dispatchers.IO)

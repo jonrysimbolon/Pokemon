@@ -17,25 +17,26 @@ abstract class Loading(
 
     open fun init() {
         val dialogView = LayoutInflater.from(dialog.context).inflate(layout, constraintLayout)
-        dialog.setContentView(dialogView)
-        dialog.window?.apply {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setDimAmount(1f)
-            setFlags(
-                WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-                WindowManager.LayoutParams.FLAG_DIM_BEHIND
-            )
+        dialog.apply {
+            setContentView(dialogView)
+            window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setDimAmount(1f)
+                setFlags(
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND,
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND
+                )
+            }
+            setCancelable(false)
         }
-        dialog.setCancelable(false)
     }
 
-    open fun show(show: Boolean) {
-        dialog.let {
-            if (show) {
-                it.show()
-            } else {
-                it.dismiss()
-            }
+    open fun show(isShow: Boolean) {
+        dialog.apply {
+            if (isShow)
+                show()
+            else
+                dismiss()
         }
     }
 }

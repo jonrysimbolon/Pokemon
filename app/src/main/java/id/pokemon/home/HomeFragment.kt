@@ -7,7 +7,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.jonrysimbolon.base.fragment.BaseFragment
 import com.pokemon.data.utils.OrderBy
 import com.pokemon.data.utils.ResultStatus
@@ -17,6 +16,8 @@ import id.pokemon.databinding.FragmentHomeBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding, HomeViewModel>(
@@ -24,10 +25,14 @@ class HomeFragment :
     ) {
 
     private val homeAdapter: HomeAdapter by inject()
-    override val baseViewModel: HomeViewModel by inject()
+    override val baseViewModel: HomeViewModel by viewModel()
 
     override fun setUpUi(savedInstanceState: Bundle?) {
         super.setUpUi(savedInstanceState)
+
+        if(savedInstanceState === null){
+            baseViewModel.getAllPokemon()
+        }
 
         binding.apply {
             pokemonRecyclerView.adapter = homeAdapter
@@ -90,12 +95,13 @@ class HomeFragment :
                     is ResultStatus.Success -> {
                         hideLoading()
                         val data = result.data
-                        val toDetailFragment =
+                        Timber.tag(TAG).d(data.name)
+                        /*val toDetailFragment =
                             HomeFragmentDirections.actionHomeFragmentToDetailFragment(
                                 data.name,
                                 data.id
                             )
-                        findNavController().navigate(toDetailFragment)
+                        findNavController().navigate(toDetailFragment)*/
                     }
                 }
             }
@@ -112,17 +118,24 @@ class HomeFragment :
                     is ResultStatus.Error -> {
                         hideLoading()
                         showError(result.error) {
-                            baseViewModel.getAllPokemon(baseViewModel.defaultOption)
+                            baseViewModel.getAllPokemon()
                         }
                     }
 
                     is ResultStatus.Success -> {
                         hideLoading()
                         val data = result.data
+                        data.forEach { pokemonModel ->
+                            Timber.d(pokemonModel.name)
+                        }
                         homeAdapter.updateData(data)
                     }
                 }
             }
             .launchIn(lifecycleScope)
+    }
+
+    companion object{
+        const val TAG = "HomeFragment"
     }
 }

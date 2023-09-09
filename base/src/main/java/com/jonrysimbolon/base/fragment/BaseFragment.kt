@@ -81,8 +81,6 @@ abstract class BaseFragment<T : ViewBinding, VM : BaseViewModel>(
     }
 
     override fun onDestroyView() {
-        loadingDialog = null
-        failureDialog = null
         _binding = null
         super.onDestroyView()
     }

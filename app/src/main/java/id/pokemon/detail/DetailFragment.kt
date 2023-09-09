@@ -16,11 +16,12 @@ import id.pokemon.databinding.FragmentDetailBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
     FragmentDetailBinding::inflate
 ) {
-    override val baseViewModel: DetailViewModel by inject()
+    override val baseViewModel: DetailViewModel by viewModel()
     private var pokemonId: Int = 0
     private var pokemonName: String = ""
     private val detailAdapter: DetailAdapter by inject()
