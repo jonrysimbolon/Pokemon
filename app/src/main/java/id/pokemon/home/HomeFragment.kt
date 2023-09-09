@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.jonrysimbolon.base.fragment.BaseFragment
 import com.pokemon.data.utils.OrderBy
 import com.pokemon.data.utils.ResultStatus
@@ -96,12 +97,12 @@ class HomeFragment :
                         hideLoading()
                         val data = result.data
                         Timber.tag(TAG).d(data.name)
-                        /*val toDetailFragment =
+                        val toDetailFragment =
                             HomeFragmentDirections.actionHomeFragmentToDetailFragment(
                                 data.name,
                                 data.id
                             )
-                        findNavController().navigate(toDetailFragment)*/
+                        findNavController().navigate(toDetailFragment)
                     }
                 }
             }
